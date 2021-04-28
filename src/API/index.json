@@ -1,0 +1,83 @@
+{
+    "filmes": [
+        {
+            "nome": "Homem de Ferro 2",
+            "descricao": "Após ser mordido por uma aranha radioativa, Peter Parker se torna o amigo da vizinhança, o Homem-Aranha.",
+            "img": "https://i.imgur.com/v9uykkF.png",
+            "maisDescricao": "Tony Stark (Robert Downey Jr.) é um industrial bilionário, que também é um brilhante inventor, ao ser sequestrado, ele é obrigado a construir uma arma devastadora, mas ao invés disso, cria uma armadura capaz de mudar a história.",
+            "avalicao": 5
+        },
+        {
+            "nome": "Homem de Ferro",
+            "descricao": "Tony Stark (Robert Downey Jr.) é um industrial bilionário, que também é um brilhante inventor, ao ser sequestrado, ele é obrigado a construir uma arma devastadora, mas ao invés disso, cria uma armadura capaz de mudar a história.",
+            "img": "https://i.imgur.com/DFL7qTX.png",
+            "maisDescricao": "O mundo já sabe que o inventor bilionário Tony Stark (Robert Downey Jr.) é o super-herói blindado Homem de Ferro. Sofrendo pressão do governo, da mídia e do público para compartilhar sua tecnologia com as forças armadas",
+            "avalicao": 5
+        },
+        {
+            "nome": "Thor",
+            "descricao": "Quando é banido do reino de Asgard e exilado na Terra, o arrogante guerreiro Thor (Chris Hemsworth) é obrigado a lutar para reaver seus poderes perdidos. ",
+            "img": "https://i.imgur.com/eUZkROA.png",
+            "maisDescricao": "Quando é banido do reino de Asgard e exilado na Terra, o arrogante guerreiro Thor (Chris Hemsworth) é obrigado a lutar para reaver seus poderes perdidos. ",
+            "avalicao": 5
+        }
+    ],
+    "personagens": [
+        {
+            "nome": "Homem-Aranha",
+            "descricao": "Após ser mordido por uma aranha radioativa, Peter Parker se torna o amigo da vizinhança, o Homem-Aranha.",
+            "img": "https://i.imgur.com/o6ZcY8l.png",
+            "aparicoes": [
+                "Capitão América - Guerra Civil",
+                "Vingadores - Guerra Infinita",
+                "Vingadores - Ultimato"
+            ],
+            "avalicao": 4
+        },
+        {
+            "nome": "Wanda Maximoff",
+            "descricao": "Wanda Maximoff foi sequestrada da Sérvia e trazida para a Montanha Wundagore, base do Alto Evolucionário. Durante anos, ela e seu irmão gêmeo, Pietro, acreditavam que eram filhos de um casal de ciganos.",
+            "img": "https://i.imgur.com/0htyt9w.png",
+            "aparicoes": [
+                "Vingadores - Era de Ultron",
+                "Capitão América - Guerra Civil",
+                "Vingadores - Guerra Infinita",
+                "Vingadores - Ultimato",
+                "WandaVision"
+            ],
+            "avalicao": 4
+        },
+        {
+            "nome": "Thanos",
+            "descricao": "A lua Titã era governada por Mentor (A'Lars), quando então reinava paz e tecnologia. Mentor tinha dois filhos: Eros e Thanos.  Ao contrário do irmão, Thanos, era bem mais poderoso e almejava ainda mais.",
+            "img": "https://i.imgur.com/BFUpkzb.png",
+            "aparicoes": [
+                "Vingadores",
+                "Guardiões da Galáxia - vol. I",
+                "Vingadores - Guerra Infinita",
+                "Vingadores - Ultimato"
+            ],
+            "avalicao": 5
+        }
+    ],
+    "hqs": [
+        {
+            "nome": "Thor: Vikings",
+            "descricao": "Garth Ennis e sua violência atacam novamente na HQ que leva a violência das histórias de Thor ao limite! Na minissérie de 2003 vemos vikings de um passado distante voltando a vida.",
+            "img": "https://i.imgur.com/aAfZyDE.png",
+            "maisDescricao": "Garth Ennis e sua violência atacam novamente na HQ que leva a violência das histórias de Thor ao limite! Na minissérie de 2003 vemos vikings de um passado distante voltando a vida."
+        },
+        {
+            "nome": "Surfista Prateado: Parábola",
+            "descricao": "O único oponente do Devorador de Mundos é o herói que ele aprisionou na Terra: o Surfista Prateado, Galactus jurou não consumir o planeta, mas e se, em vez disso, ele transformar a civilização em seus adoradores?",
+            "img": "https://i.imgur.com/I43zQM3.png",
+            "maisDescricao": "O único oponente do Devorador de Mundos é o herói que ele aprisionou na Terra: o Surfista Prateado, Galactus jurou não consumir o planeta, mas e se, em vez disso, ele transformar a civilização em seus adoradores?"
+        },
+        {
+            "nome": "Wolverine: Origens",
+            "descricao": "Origem é uma minissérie em quadrinhos publicada pela Marvel Comics em seis edições, entre 2001 e 2002. A história conta a revelação do passado do personagem Wolverine. ",
+            "img": "https://i.imgur.com/TFe2KbE.png",
+            "maisDescricao": "Origem é uma minissérie em quadrinhos publicada pela Marvel Comics em seis edições, entre 2001 e 2002. A história conta a revelação do passado do personagem Wolverine. "
+        }
+    ]
+}

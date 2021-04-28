@@ -1,0 +1,16 @@
+.animeLeft {
+    position: absolute;
+    transform: translate(200px, 300px) !important;
+    transition: 1s;
+    z-index: 1;
+}
+
+.animeTop {
+    position: absolute;
+    transform: translate(200px, 50px) !important;
+    transition: 1s;
+}
+
+.fade {
+    opacity: 1!important;
+}
