@@ -141,6 +141,10 @@ export const LembrarMe = styled.div`
     a:hover {
         opacity: 0.8;
     }
+
+    @media(max-width: 540px) {
+        width: 100%;
+    }
 `;
 export const CadastreSe = styled.span`
     color: #84848D;
