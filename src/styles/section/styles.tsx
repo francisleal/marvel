@@ -40,6 +40,7 @@ export const ContainerPages = styled.div<ContainerPagesProps>`
       flex-direction: column; 
       height: auto;
       gap: 16px;
+      padding-top: 137px;
 
       span {
          flex-direction: column;

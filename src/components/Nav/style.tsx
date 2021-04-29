@@ -25,6 +25,9 @@ export const Menu = styled.nav`
 
     @media(max-width: 540px) {
         padding: 0px 60px 0px 60px;
+        position: fixed;
+        z-index: 6;
+        width: 100vw;
 
         a {
             font-size: 16px;
