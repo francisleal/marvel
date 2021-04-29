@@ -22,6 +22,14 @@ export const Menu = styled.nav`
         margin-right: 86px;
         color: #84848D;
     }
+
+    @media(max-width: 540px) {
+        padding: 0px 60px 0px 60px;
+
+        a {
+            font-size: 16px;
+        }
+    }
 `;
 
 export const Logo = styled.div`
@@ -43,9 +51,33 @@ export const Logo = styled.div`
         z-index: 1;
         position: relative
     }
+
+    @media(max-width: 540px) {
+        &:after {
+            top: 24px;
+            left: 32px;
+            display: block;
+            width: 70px;
+            height: 35px;
+        }
+
+        p {
+            font-size: 32px;
+            top: 54px;
+            left: -19px;
+        }
+    }
+
+    
 `;
 
-export const Links = styled.div``;
+export const Links = styled.div`
+@media(max-width: 540px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+`;
 
 export const Sair = styled.span`
     font-size: 20px;
