@@ -12,6 +12,7 @@ type MyFilmes = {
 
 function Filmes(): JSX.Element {
 
+    // variáveis de estado
     const [detalhe, setDetalhe] = useState(false);
     const [list, setList] = useState<MyFilmes[]>([]);
 
@@ -20,15 +21,18 @@ function Filmes(): JSX.Element {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    // lista filmes
     function handleListarFilmes() {
         setList(api.filmes);
     }
 
+    // visualiza detalhe dos filmes
     function handleVisualizarDetalhe(filme: MyFilmes) {
         setDetalhe(!detalhe);
         setList([filme])
     }
 
+    // fecha detalhe dos filmes
     function handleFecharDetalhe() {
         setDetalhe(!detalhe);
         setList(api.filmes);

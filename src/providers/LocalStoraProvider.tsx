@@ -22,11 +22,14 @@ type UserProviderProps = {
 
 export const ListarEmpresasProvider = ({ children }: UserProviderProps) => {
 
+    // variáveis de estado
     const [mensagemAlert, setMensagemAlert] = useState<string>('');
     const [reload, setReloadMensagemAlert] = useState<number>(0);
 
+    // componete de mensagem - alert
     const alertMensage = (mensagem: string) => { setMensagemAlert(mensagem); setReloadMensagemAlert(reload + 1); }
 
+    // salva usuário
     function salvarUsuario(data: UserDate) {
         if (!verificaUsuarioSalvo()) {
             data.usuario = capitalize(data.usuario);
@@ -39,6 +42,7 @@ export const ListarEmpresasProvider = ({ children }: UserProviderProps) => {
         }
     }
 
+    // verifica usuário salvo
     function verificaUsuarioSalvo() {
         const usuarioCadastrado = localStorage.getItem('UserMarvel');
         const usuarioCadastradoJson = JSON.parse(String(usuarioCadastrado));
@@ -46,6 +50,7 @@ export const ListarEmpresasProvider = ({ children }: UserProviderProps) => {
         return usuarioCadastradoJson;
     }
 
+    // salva apenas um usuario com status marcado
     function salvaApenasUmCheckbox(data: UserDate) {
         const salvar = verificaUsuarioSalvo();
 

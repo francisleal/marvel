@@ -4,7 +4,8 @@ import Nav from '../../components/Nav';
 import api from '../../API/index.json';
 import Section from './Section';
 
-type Filmes = {
+// tipagem do personagem
+type Personagem = {
     nome: string,
     descricao: string,
     img: string,
@@ -13,23 +14,27 @@ type Filmes = {
 
 function Personagens() {
 
+    // variáveis de estado
     const [detalhe, setDetalhe] = useState(false);
-    const [list, setList] = useState<Filmes[]>([]);
+    const [list, setList] = useState<Personagem[]>([]);
 
     useEffect(() => {
-        handleListarFilmes()
+        handleListarPersonagens()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    function handleListarFilmes() {
+    // listar personagens
+    function handleListarPersonagens() {
         setList(api.personagens);
     }
 
-    function handleVisualizarDetalhe(filme: Filmes) {
+    // visualizar detalhes dos personagens
+    function handleVisualizarDetalhe(filme: Personagem) {
         setDetalhe(!detalhe);
         setList([filme])
     }
 
+    // fechar detalhe do personagem
     function handleFecharDetalhe() {
         setDetalhe(!detalhe);
         setList(api.personagens);

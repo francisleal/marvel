@@ -29,17 +29,20 @@ type User = {
 // componente utilizando "react-hook-form"
 function Cadastro(): JSX.Element {
 
+    // local storage
+    const usuarioSalvo = localStorage.getItem('UserMarvel');
+
+    // variáveis de estado
     const [mensagemAlert, setMensagemAlert] = useState<string>('');
     const [reload, setReloadMensagemAlert] = useState<number>(0);
 
+    // funcao: excuta componente de mensagem
     const alertMensage = (mensagem: string) => { setMensagemAlert(mensagem); setReloadMensagemAlert(reload + 1); }
 
     const history = useHistory();
 
-    const usuarioSalvo = localStorage.getItem('UserMarvel');
-
+    // variáveis providers
     const { register, handleSubmit } = useForm<User>();
-
     const { salvarUsuario } = useLocaStorage();
 
     const onSubmit = ({ usuario, senha, checked, confirmarSenha }: User) => {
@@ -52,6 +55,7 @@ function Cadastro(): JSX.Element {
         }
     };
 
+    // verifica se o usúario foi cadastrado com sucesso
     const verificaUsuarioSalvo = (usuario: string) => {
         if (usuarioSalvo !== null) {
             const verficaUsuario = JSON.parse(usuarioSalvo);

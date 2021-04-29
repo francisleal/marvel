@@ -20,6 +20,7 @@ import {
 import Alert from "../../components/Alert";
 import { capitalize } from "../../components/Utils/capitalize";
 
+// tipagem
 type User = {
     usuario: string,
     senha: string,
@@ -31,15 +32,19 @@ function Login(): JSX.Element {
 
     const history = useHistory();
 
+    // variáveis de estado
     const [loading, setLoading] = useState<boolean>(false);
     const [mensagemAlert, setMensagemAlert] = useState<string>('');
     const [reload, setReloadMensagemAlert] = useState<number>(0);
 
+    // variáveis providers
     const { verificaUsuarioSalvo, salvaApenasUmCheckbox } = useLocaStorage();
     const usuarioCadastradoJson = verificaUsuarioSalvo();
 
+    // funcao: excuta componente de mensagem
     const alertMensage = (mensagem: string) => { setMensagemAlert(mensagem); setReloadMensagemAlert(reload + 1); }
 
+    // variável de estado tipada
     const [login, setLogin] = useState<User>({
         usuario: '',
         senha: '',
@@ -47,9 +52,10 @@ function Login(): JSX.Element {
     });
 
     useEffect(() => {
-
+        // retorna usuário checado
         const mostarUsuario = usuarioCadastradoJson?.filter((usuario: User) => usuario.checked === true);
 
+        // retorna usuário checado na tela
         if (typeof mostarUsuario !== 'undefined') {
             setLogin({
                 usuario: String(mostarUsuario.map((usuario: User) => usuario.usuario)),
@@ -58,11 +64,13 @@ function Login(): JSX.Element {
             })
         }
 
+        // execula animação quando carrega a tela
         setTimeout(() => animacaoSimples1(), 1000);
         setTimeout(() => animacaoSimples2(), 2500);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    // coleta os valores do campo de entrada
     function updateModel(e: ChangeEvent<HTMLInputElement>) {
         setLogin({
             ...login,
@@ -70,7 +78,8 @@ function Login(): JSX.Element {
         })
     }
 
-    function onsubmit(e: ChangeEvent<HTMLFormElement>) {
+    // salva usuário
+    function handleLogar(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
 
         if (usuarioCadastradoJson) {
@@ -88,11 +97,13 @@ function Login(): JSX.Element {
         }
     }
 
+    // animaçao da logo para esquerda
     function animacaoSimples1() {
         document.getElementById("anime")?.classList.add("animeLeft");
         setTimeout(() => document.getElementById("form")?.classList.add("fade"), 2000);
     }
 
+    // animação da logo para cima
     function animacaoSimples2() {
         document.getElementById("anime")?.classList.add("animeTop");
         setLoading(true);
@@ -107,7 +118,7 @@ function Login(): JSX.Element {
 
             {
                 loading && <Contanier>
-                    <FormContainer fade={true} id="form" onSubmit={onsubmit}>
+                    <FormContainer fade={true} id="form" onSubmit={handleLogar}>
                         <SubTitle>Bem-vindo(a) de volta!</SubTitle>
                         <Fieldset>
                             <Legend>Acesse sua conta:</Legend>
