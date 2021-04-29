@@ -1,4 +1,6 @@
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode, useState } from "react";
+import Alert from "../components/Alert";
+import { capitalize } from "../components/Utils/capitalize";
 
 type UserDate = {
     usuario: string;
@@ -20,26 +22,20 @@ type UserProviderProps = {
 
 export const ListarEmpresasProvider = ({ children }: UserProviderProps) => {
 
-    useEffect(() => {
-        const usuarioSalvo = localStorage.getItem('UserMarvel');
+    const [mensagemAlert, setMensagemAlert] = useState<string>('');
+    const [reload, setReloadMensagemAlert] = useState<number>(0);
 
-        if (usuarioSalvo) {
-            const usuarioSalvoJson = JSON.parse(usuarioSalvo);
-            const usuarioChecked = usuarioSalvoJson.filter((user: UserDate) => user.checked === true);
-            if (usuarioChecked.length) {
-                console.log('um usuario marcado', usuarioChecked);
-            }
-        }
-    }, []);
+    const alertMensage = (mensagem: string) => { setMensagemAlert(mensagem); setReloadMensagemAlert(reload + 1); }
 
     function salvarUsuario(data: UserDate) {
         if (!verificaUsuarioSalvo()) {
+            data.usuario = capitalize(data.usuario);
             localStorage.setItem('UserMarvel', JSON.stringify([data]));
         } else {
             const usuarioCadatrado = verificaUsuarioSalvo()
-                .filter((user: UserDate) => user.usuario === data.usuario);
+                .filter((user: UserDate) => capitalize(user.usuario) === capitalize(data.usuario));
 
-            usuarioCadatrado.length ? alert('Usuário já cadastrado') : salvaApenasUmCheckbox(data);
+            usuarioCadatrado.length ? alertMensage('Usuário já cadastrado') : salvaApenasUmCheckbox(data);
         }
     }
 
@@ -55,17 +51,15 @@ export const ListarEmpresasProvider = ({ children }: UserProviderProps) => {
 
         const check = salvar.map((user: UserDate) => {
             const marcaApenasUmcheckebox = {
-                usuario: user.usuario,
+                usuario: capitalize(user.usuario),
                 senha: user.senha,
                 checked: false,
             }
             return marcaApenasUmcheckebox
-        }); 
+        });
         check.push(data);
 
-        const remove = check
-            .filter((remove: UserDate) => remove.usuario !== data.usuario);
-
+        const remove = check.filter((remove: UserDate) => capitalize(remove.usuario) !== capitalize(data.usuario));
         remove.push(data);
         localStorage.setItem('UserMarvel', JSON.stringify(remove))
     }
@@ -73,6 +67,7 @@ export const ListarEmpresasProvider = ({ children }: UserProviderProps) => {
     return (
         <LocalStorageContext.Provider value={{ salvarUsuario, verificaUsuarioSalvo, salvaApenasUmCheckbox }} >
             {children}
+            <Alert msg={mensagemAlert} reload={reload} />
         </LocalStorageContext.Provider>
     )
 }

@@ -105,6 +105,10 @@ export const Button = styled.button`
     }
 `;
 
+export const Voltar = styled(Button)`
+    background-color: #84848D;
+`;
+
 type TitleContainerProps = {
     altura: number;
     largura: number;
@@ -116,14 +120,26 @@ export const TitleContainer = styled.div<TitleContainerProps>`
 `;
 
 export const LembrarMe = styled.div`
-    display: 'flex';
-    justify-content: 'space-between';
+    display: flex;
+    justify-content: space-between;
     color: #84848D;
     font-size: 15px;
     margin-left: 16px;
+    width: 367px;
 
     & div > input {
         margin-right: 16px;
+    }
+
+   a {
+        color: #84848D;
+        text-decoration: none;
+        border-bottom: 1px solid red;
+        cursor: pointer;
+    }
+
+    a:hover {
+        opacity: 0.8;
     }
 `;
 export const CadastreSe = styled.span`

@@ -1,6 +1,8 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { useForm } from 'react-hook-form';
 import { useHistory } from "react-router-dom";
+import Alert from "../../components/Alert";
+import { capitalize } from "../../components/Utils/capitalize";
 import { useLocaStorage } from "../../providers/LocalStoraProvider";
 import {
     Contanier,
@@ -27,20 +29,40 @@ type User = {
 // componente utilizando "react-hook-form"
 function Cadastro(): JSX.Element {
 
+    const [mensagemAlert, setMensagemAlert] = useState<string>('');
+    const [reload, setReloadMensagemAlert] = useState<number>(0);
+
+    const alertMensage = (mensagem: string) => { setMensagemAlert(mensagem); setReloadMensagemAlert(reload + 1); }
+
     const history = useHistory();
+
+    const usuarioSalvo = localStorage.getItem('UserMarvel');
 
     const { register, handleSubmit } = useForm<User>();
 
     const { salvarUsuario } = useLocaStorage();
 
     const onSubmit = ({ usuario, senha, checked, confirmarSenha }: User) => {
+
         if (senha === confirmarSenha) {
             salvarUsuario({ usuario, senha, checked });
-            history.push('/Personagens');
+            verificaUsuarioSalvo(usuario);
         } else {
-            alert('Senhas diferentes');
+            alertMensage('Senhas diferentes');
         }
     };
+
+    const verificaUsuarioSalvo = (usuario: string) => {
+        if (usuarioSalvo !== null) {
+            const verficaUsuario = JSON.parse(usuarioSalvo);
+
+            if (verficaUsuario.filter((user: User) => capitalize(user.usuario) === capitalize(usuario)).length === 0) {
+                history.push('/Personagens');
+            }
+        }
+
+        if (usuarioSalvo === null) history.push('/Personagens');
+    }
 
     return (
         <Contanier>
@@ -80,6 +102,7 @@ function Cadastro(): JSX.Element {
                     <Button>Salvar</Button>
                 </Fieldset>
             </FormContainer>
+            <Alert msg={mensagemAlert} reload={reload} />
         </Contanier>
     );
 }

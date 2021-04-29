@@ -25,8 +25,6 @@ type MyFilmes = {
 
 function Section(props: any): JSX.Element {
 
-    console.log(props);
-
     return (
         <>
             <div className="modal">

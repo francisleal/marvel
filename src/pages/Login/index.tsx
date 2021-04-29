@@ -17,6 +17,8 @@ import {
     CadastreSe,
     LembrarMe
 } from "../../styles/global";
+import Alert from "../../components/Alert";
+import { capitalize } from "../../components/Utils/capitalize";
 
 type User = {
     usuario: string,
@@ -29,11 +31,14 @@ function Login(): JSX.Element {
 
     const history = useHistory();
 
-    const { verificaUsuarioSalvo, salvaApenasUmCheckbox } = useLocaStorage();
+    const [loading, setLoading] = useState<boolean>(false);
+    const [mensagemAlert, setMensagemAlert] = useState<string>('');
+    const [reload, setReloadMensagemAlert] = useState<number>(0);
 
+    const { verificaUsuarioSalvo, salvaApenasUmCheckbox } = useLocaStorage();
     const usuarioCadastradoJson = verificaUsuarioSalvo();
 
-    const [loading, setLoading] = useState<boolean>(false);
+    const alertMensage = (mensagem: string) => { setMensagemAlert(mensagem); setReloadMensagemAlert(reload + 1); }
 
     const [login, setLogin] = useState<User>({
         usuario: '',
@@ -70,26 +75,25 @@ function Login(): JSX.Element {
 
         if (usuarioCadastradoJson) {
             const validaUsuario = usuarioCadastradoJson.filter((user: User) => {
-                return user.usuario === login.usuario && user.senha === login.senha
+                return capitalize(user.usuario) === capitalize(login.usuario) && user.senha === login.senha
             });
             if (validaUsuario.length) {
                 history.push('/Personagens');
                 salvaApenasUmCheckbox(login);
             } else {
-                alert('Usuário ou senha não cadastrada');
+                alertMensage('Usuário ou senha não cadastrado');
             }
         } else {
-            alert('Usuário não encontrado');
+            alertMensage('Não encontrado');
         }
     }
-
 
     function animacaoSimples1() {
         document.getElementById("anime")?.classList.add("animeLeft");
         setTimeout(() => document.getElementById("form")?.classList.add("fade"), 2000);
     }
 
-    function animacaoSimples2() {        
+    function animacaoSimples2() {
         document.getElementById("anime")?.classList.add("animeTop");
         setLoading(true);
     }
@@ -130,17 +134,17 @@ function Login(): JSX.Element {
                                         checked={login.checked}
                                         onChange={(e: ChangeEvent<HTMLInputElement>) => updateModel(e)}
                                     />
-                            Salvar login
-                        </div>
+                                    Salvar login
+                                </div>
+                                <Link to="EsqueciSenha">Esqueci a senha</Link>
                             </LembrarMe>
                             <Button type="submit">Entrar</Button>
                             <CadastreSe>Ainda não tem o login?<Link to="Cadastro"> Cadastre-se</Link></CadastreSe>
                         </Fieldset>
                     </FormContainer>
+                    <Alert msg={mensagemAlert} reload={reload} />
                 </Contanier>
             }
-
-
         </>
     );
 }
